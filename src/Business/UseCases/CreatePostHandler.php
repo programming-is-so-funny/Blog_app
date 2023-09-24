@@ -6,6 +6,7 @@ use App\Business\Commands\SavePostCommand;
 use App\Business\Entities\Post;
 use App\Business\Responses\SavePostResponse;
 use App\Business\VO\Content;
+use App\Business\VO\FullName;
 use App\Business\VO\StringVo;
 use App\Business\VO\Title;
 
