@@ -2,6 +2,7 @@
 
 namespace App\Business\Entities;
 
+use App\Business\Utils\Exceptions\NotEmptyException;
 use App\Business\Utils\StrHelper;
 use App\Business\VO\Content;
 use App\Business\VO\DateVo;
@@ -40,6 +41,7 @@ class Post
      * @param Content $content
      * @param FullName $author
      * @return self
+     * @throws NotEmptyException
      */
     public static function create(
         Title    $title,
