@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Business\Commands\SavePostCommand;
 use App\Business\Responses\SavePostResponse;
 use App\Business\UseCases\CreatePostHandler;
+use App\Business\Utils\Exceptions\NotEmptyException;
 use PHPUnit\Framework\TestCase;
 
 class CreatePostTest extends TestCase
@@ -38,5 +39,17 @@ class CreatePostTest extends TestCase
     {
         $handler = new CreatePostHandler();
         return $handler->handle($command);
+    }
+
+    public function test_can_throw_not_empty_exception()
+    {
+        $command = new SavePostCommand(
+            title: "",
+            content: "",
+            author: ""
+        );
+        $this->expectException(NotEmptyException::class);
+        $this->createPost($command);
+
     }
 }

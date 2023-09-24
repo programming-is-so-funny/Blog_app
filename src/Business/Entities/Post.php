@@ -2,6 +2,7 @@
 
 namespace App\Business\Entities;
 
+use App\Business\Utils\Exceptions\NotEmptyException;
 use App\Business\Utils\StrHelper;
 use App\Business\VO\Content;
 use App\Business\VO\DateVo;
@@ -40,6 +41,7 @@ class Post
      * @param Content $content
      * @param FullName $author
      * @return self
+     * @throws NotEmptyException
      */
     public static function create(
         Title    $title,
@@ -47,15 +49,22 @@ class Post
         FullName $author
     ): self
     {
-        $slug = StrHelper::slugify($title->value());
-
         return new self(
             postId: new Id(),
             title: $title,
-            slug: new StringVo($slug),
+            slug: new StringVo(self::generateSlugFromTitle($title)),
             content: $content,
             fullName: $author, createdAt: new DateVo()
         );
+    }
+
+    /**
+     * @param Title $title
+     * @return string
+     */
+    public static function generateSlugFromTitle(Title $title): string
+    {
+        return StrHelper::slugify($title->value());
     }
 
     /**
