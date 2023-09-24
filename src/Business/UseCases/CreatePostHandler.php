@@ -13,10 +13,6 @@ use App\Business\VO\Title;
 class CreatePostHandler
 {
 
-    public function __construct()
-    {
-    }
-
     /**
      * @throws NotEmptyException
      */

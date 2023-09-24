@@ -49,15 +49,22 @@ class Post
         FullName $author
     ): self
     {
-        $slug = StrHelper::slugify($title->value());
-
         return new self(
             postId: new Id(),
             title: $title,
-            slug: new StringVo($slug),
+            slug: new StringVo(self::generateSlugFromTitle($title)),
             content: $content,
             fullName: $author, createdAt: new DateVo()
         );
+    }
+
+    /**
+     * @param Title $title
+     * @return string
+     */
+    public static function generateSlugFromTitle(Title $title): string
+    {
+        return StrHelper::slugify($title->value());
     }
 
     /**
