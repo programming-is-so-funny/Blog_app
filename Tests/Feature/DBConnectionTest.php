@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use App\Business\Utils\Database\DBConnection;
 use App\Business\Utils\Exceptions\ErrorOnConnectToDatabaseException;

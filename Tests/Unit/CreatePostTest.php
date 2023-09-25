@@ -35,12 +35,6 @@ class CreatePostTest extends TestCase
         $this->assertNotNull($response->postId);
     }
 
-    private function createPost(SavePostCommand $command): SavePostResponse
-    {
-        $handler = new CreatePostHandler();
-        return $handler->handle($command);
-    }
-
     public function test_can_throw_not_empty_exception()
     {
         $command = new SavePostCommand(
@@ -51,5 +45,11 @@ class CreatePostTest extends TestCase
         $this->expectException(NotEmptyException::class);
         $this->createPost($command);
 
+    }
+
+    private function createPost(SavePostCommand $command): SavePostResponse
+    {
+        $handler = new CreatePostHandler();
+        return $handler->handle($command);
     }
 }
