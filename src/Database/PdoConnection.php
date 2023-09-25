@@ -41,6 +41,9 @@ class PdoConnection implements DBConnection
         }
     }
 
+    /**
+     * @return void
+     */
     private function initializeEnvironmentVariables(): void
     {
         $this->driver = $_ENV['DB_CONNECTION'];
