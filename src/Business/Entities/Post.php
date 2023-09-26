@@ -50,11 +50,12 @@ class Post
     ): self
     {
         return new self(
-            postId: new Id(),
+            postId: Id::nextIdentifier(),
             title: $title,
             slug: new StringVo(self::generateSlugFromTitle($title)),
             content: $content,
-            fullName: $author, createdAt: new DateVo()
+            fullName: $author,
+            createdAt: new DateVo()
         );
     }
 
@@ -62,7 +63,7 @@ class Post
      * @param Title $title
      * @return string
      */
-    public static function generateSlugFromTitle(Title $title): string
+    private static function generateSlugFromTitle(Title $title): string
     {
         return StrHelper::slugify($title->value());
     }

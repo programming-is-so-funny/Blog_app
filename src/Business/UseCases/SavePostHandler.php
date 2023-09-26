@@ -10,7 +10,7 @@ use App\Business\VO\Content;
 use App\Business\VO\FullName;
 use App\Business\VO\Title;
 
-class CreatePostHandler
+class SavePostHandler
 {
 
     /**

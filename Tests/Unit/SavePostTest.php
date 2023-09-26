@@ -4,11 +4,11 @@ namespace Tests\Unit;
 
 use App\Business\Commands\SavePostCommand;
 use App\Business\Responses\SavePostResponse;
-use App\Business\UseCases\CreatePostHandler;
+use App\Business\UseCases\SavePostHandler;
 use App\Business\Utils\Exceptions\NotEmptyException;
 use PHPUnit\Framework\TestCase;
 
-class CreatePostTest extends TestCase
+class SavePostTest extends TestCase
 {
     public function setUp(): void
     {
@@ -29,7 +29,7 @@ class CreatePostTest extends TestCase
                             versions of Lorem Ipsum.",
             author: "Geekers Joel"
         );
-        $response = $this->createPost($command);
+        $response = $this->savePost($command);
 
         $this->assertTrue($response->isSaved);
         $this->assertNotNull($response->postId);
@@ -43,13 +43,13 @@ class CreatePostTest extends TestCase
             author: ""
         );
         $this->expectException(NotEmptyException::class);
-        $this->createPost($command);
+        $this->savePost($command);
 
     }
 
-    private function createPost(SavePostCommand $command): SavePostResponse
+    private function savePost(SavePostCommand $command): SavePostResponse
     {
-        $handler = new CreatePostHandler();
+        $handler = new SavePostHandler();
         return $handler->handle($command);
     }
 }
