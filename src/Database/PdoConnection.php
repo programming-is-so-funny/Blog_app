@@ -12,17 +12,17 @@ class PdoConnection implements DBConnection
 {
     private PDO $connection;
 
+    private string $driver;
+    private string $host;
+    private string $port;
+    private string $dbName;
+    private string $userName;
+    private string $password;
+
     /**
      * @throws ErrorOnConnectToDatabaseException
      */
-    public function __construct(
-        private string $driver,
-        private string $host,
-        private string $port,
-        private string $dbName,
-        private string $userName,
-        private string $password
-    )
+    public function __construct()
     {
         try {
 
@@ -54,6 +54,9 @@ class PdoConnection implements DBConnection
         $this->password = $_ENV['DB_PASSWORD'];
     }
 
+    /**
+     * @return PDO
+     */
     public function getConnection(): PDO
     {
         return $this->connection;

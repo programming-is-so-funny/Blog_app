@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Post;
 
 use App\Business\Commands\SavePostCommand;
 use App\Business\Responses\SavePostResponse;
